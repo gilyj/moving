@@ -119,6 +119,10 @@ let MouseEvent = function(callback){
     canvas.onmousedown = ondown;
     canvas.onmousemove = onmove;
     canvas.onmouseup = onup;
+
+    canvas.ontouchstart = ondown;
+    canvas.ontouchmove = onmove;
+    canvas.ontouchend = onup;
 };
 
 let mouseType = new MouseEvent(function(type, e){
