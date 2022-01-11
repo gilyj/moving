@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="app.js" defer></script>
+
+    <style>
+        *{margin: 0; padding: 0; box-sizing: border-box;}
+        body{overflow: hidden;}
+
+        canvas{
+            border: 2px solid #111;
+        }
+
+        .btn_wrap{
+            position: absolute;
+            top: 50%;
+            right: 20px;
+
+            transform: translateY(-50%);
+        }
+        button{
+            display: block;
+            width: 120px;
+            height: 40px;
+        }
+
+        button:not(:first-of-type){
+            margin-top: 20%;
+        }
+    </style>
+</head>
+<body>
+    <canvas id="canvas"></canvas>
+
+    <div class="btn_wrap">
+        <button class="spider_web">거미줄</button>
+        <button class="bugs">벌레</button>
+    </div>
+</body>
+</html>
