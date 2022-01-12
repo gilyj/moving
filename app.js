@@ -123,8 +123,9 @@ let MouseEvent = function(callback){
     // canvas.addEventListener('touchstart', ondown);
     // canvas.addEventListener('touchmove', onmove);
     // canvas.addEventListener('touchend', onup);
-    // canvas.ontouchmove = onmove;
-    // canvas.ontouchend = onup;
+    canvas.ontouchstart = ondown;
+    canvas.ontouchmove = onmove;
+    canvas.ontouchend = onup;
 };
 
 // 마우스 다운시 circle 포지션 위치 확인해서 이벤트 진행 조건 설정
@@ -170,10 +171,8 @@ function findPos(e){
 };
 
 function touchPos(e){
-    if(e.touches.length > 0){
-        prevX = e.touches[0].clientX;
-        prevY = e.touches[0].clientY;
-    }
+    prevX = e.touches[0].clientX;
+    prevY = e.touches[0].clientY;
 
     pos.push({
         x: prevX,
