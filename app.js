@@ -18,6 +18,7 @@ class Draw{
         this.y = y;
         this.radius = radius;
 
+        // 거미 이동 경로 설정된 좌표 ? 규칙적인 이동 루트
         this.vx = 5;
         this.vy = 2;
     }
@@ -66,8 +67,6 @@ let tracking = false;
 
 
 document.querySelector('.spider_web').addEventListener('click', e => {
-    // let x = e.clientX;
-    // let y = e.clientY;
     tracking = true;
 
     let radius = 10;
@@ -86,7 +85,6 @@ document.querySelector('.spider_web').addEventListener('click', e => {
 
 
     if(tracking) movingAnimate();
-    
 });
 
 function movingAnimate(){
@@ -120,13 +118,16 @@ let MouseEvent = function(callback){
     canvas.onmousemove = onmove;
     canvas.onmouseup = onup;
 
-    canvas.addEventListener('touchstart', ondown);
-    canvas.addEventListener('touchmove', onmove);
-    canvas.addEventListener('touchend', onup);
+    // 디바이스 터치스크린 이벤트 설정 필요
+
+    // canvas.addEventListener('touchstart', ondown);
+    // canvas.addEventListener('touchmove', onmove);
+    // canvas.addEventListener('touchend', onup);
     // canvas.ontouchmove = onmove;
     // canvas.ontouchend = onup;
 };
 
+// 마우스 다운시 circle 포지션 위치 확인해서 이벤트 진행 조건 설정
 let mouseType = new MouseEvent(function(type, e){
     switch(type){
         case 'down' :
@@ -134,7 +135,10 @@ let mouseType = new MouseEvent(function(type, e){
             pos = [];
             break;
         case 'move' :
-            if(isClick){ findPos(e)};
+            if(isClick){ 
+                findPos(e);
+                touchPos(e);
+            };
             break;
         case 'up' :
             if(isClick){
@@ -164,6 +168,20 @@ function findPos(e){
     })
     draw2.line(prevX, prevY);
 };
+
+function touchPos(e){
+    if(e.touches.length > 0){
+        prevX = e.touches[0].clientX;
+        prevY = e.touches[0].clientY;
+    }
+
+    pos.push({
+        x: prevX,
+        y: prevY
+    })
+
+    draw2.line(prevX, prevY);
+}
 
 function trackingAnimation(){
     let i = 0;
